@@ -7,7 +7,7 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-const publicUrl = "https://leoncenteno2009-sudo.github.io/instituto-horizonte/";
+const publicUrl = "https://leoncenteno2009-sudo.github.io/instituto-horizonte-final/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(publicUrl),
