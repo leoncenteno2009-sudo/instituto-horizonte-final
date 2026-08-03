@@ -155,6 +155,20 @@ export default function Home() {
   const [visitOpen, setVisitOpen] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const element = document.getElementById(id);
+    if (!element) return;
+    const headerOffset = 90;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  };
+
   useEffect(() => {
     let ticking = false;
 
@@ -162,21 +176,37 @@ export default function Home() {
       const story = storyRef.current;
       if (!story) return;
       const total = Math.max(1, story.offsetHeight - window.innerHeight);
-      const progress = clamp(-story.getBoundingClientRect().top / total);
+      const rawProgress = -story.getBoundingClientRect().top / total;
+
+      const pageMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      document.documentElement.style.setProperty("--page-progress", (window.scrollY / pageMax).toFixed(4));
+
+      if (rawProgress < -0.05 || rawProgress > 1.05) {
+        videoRefs.current.forEach((video) => {
+          if (!video) return;
+          video.style.opacity = "0";
+          if (!video.paused) video.pause();
+        });
+        ticking = false;
+        return;
+      }
+
+      const progress = clamp(rawProgress);
       const nextStage = Math.min(stages.length - 1, Math.floor(progress * stages.length));
-      setActiveStage((previous) => previous === nextStage ? previous : nextStage);
+      setActiveStage((previous) => (previous === nextStage ? previous : nextStage));
 
       videoRefs.current.forEach((video, index) => {
         if (!video) return;
         const opacity = stageOpacity(progress, index);
         video.style.opacity = opacity.toFixed(3);
         const shouldPlay = opacity > 0.025;
-        if (shouldPlay && video.paused) void video.play().catch(() => undefined);
-        if (!shouldPlay && !video.paused) video.pause();
+        if (shouldPlay && video.paused) {
+          void video.play().catch(() => undefined);
+        } else if (!shouldPlay && !video.paused) {
+          video.pause();
+        }
       });
 
-      const pageMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      document.documentElement.style.setProperty("--page-progress", (window.scrollY / pageMax).toFixed(4));
       ticking = false;
     };
 
@@ -231,15 +261,15 @@ export default function Home() {
     <>
       <div className="page-progress" aria-hidden="true"><span /></div>
       <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Instituto Horizonte, ir al inicio">
+        <a className="brand" href="#inicio" onClick={(e) => scrollToSection(e, "inicio")} aria-label="Instituto Horizonte, ir al inicio">
           <span className="brand-mark">H</span>
           <span className="brand-name">INSTITUTO HORIZONTE</span>
         </a>
         <nav className="desktop-nav" aria-label="Navegación principal">
-          <a href="#modelo">Modelo</a>
-          <a href="#areas">Aprendizaje</a>
-          <a href="#vida">Vida estudiantil</a>
-          <a href="#admisiones">Admisiones</a>
+          <a href="#modelo" onClick={(e) => scrollToSection(e, "modelo")}>Modelo</a>
+          <a href="#areas" onClick={(e) => scrollToSection(e, "areas")}>Aprendizaje</a>
+          <a href="#vida" onClick={(e) => scrollToSection(e, "vida")}>Vida estudiantil</a>
+          <a href="#admisiones" onClick={(e) => scrollToSection(e, "admisiones")}>Admisiones</a>
         </nav>
         <button className="header-cta" type="button" onClick={() => setVisitOpen(true)}>
           Agenda tu visita <Arrow />
@@ -257,9 +287,14 @@ export default function Home() {
 
       {menuOpen && (
         <nav className="mobile-menu" aria-label="Navegación móvil">
-          {["modelo", "areas", "vida", "admisiones"].map((id, index) => (
-            <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
-              <span>0{index + 1}</span>{["Modelo", "Aprendizaje", "Vida estudiantil", "Admisiones"][index]}
+          {[
+            { id: "modelo", label: "Modelo" },
+            { id: "areas", label: "Aprendizaje" },
+            { id: "vida", label: "Vida estudiantil" },
+            { id: "admisiones", label: "Admisiones" },
+          ].map(({ id, label }, index) => (
+            <a key={id} href={`#${id}`} onClick={(e) => scrollToSection(e, id)}>
+              <span>0{index + 1}</span>{label}
             </a>
           ))}
           <button type="button" onClick={() => { setMenuOpen(false); setVisitOpen(true); }}>Agenda tu visita <Arrow /></button>
@@ -380,7 +415,7 @@ export default function Home() {
             <p>Conoce el campus, nuestro modelo y a las personas que acompañarán tu proceso.</p>
             <div>
               <button className="primary-button primary-button-light" type="button" onClick={() => setVisitOpen(true)}>Agenda tu visita <Arrow /></button>
-              <a className="text-button" href="#modelo">Explora nuestro modelo</a>
+              <a className="text-button" href="#modelo" onClick={(e) => scrollToSection(e, "modelo")}>Explora nuestro modelo</a>
             </div>
           </div>
         </section>
@@ -389,8 +424,12 @@ export default function Home() {
       <footer className="site-footer">
         <div className="footer-brand"><span>H</span><strong>INSTITUTO HORIZONTE</strong></div>
         <p>Aprender. Crear. Conectar. Avanzar.</p>
-        <nav aria-label="Enlaces de pie de página"><a href="#modelo">Modelo</a><a href="#vida">Comunidad</a><a href="#admisiones">Admisiones</a></nav>
-        <a className="back-top" href="#inicio">Volver arriba ↑</a>
+        <nav aria-label="Enlaces de pie de página">
+          <a href="#modelo" onClick={(e) => scrollToSection(e, "modelo")}>Modelo</a>
+          <a href="#vida" onClick={(e) => scrollToSection(e, "vida")}>Comunidad</a>
+          <a href="#admisiones" onClick={(e) => scrollToSection(e, "admisiones")}>Admisiones</a>
+        </nav>
+        <a className="back-top" href="#inicio" onClick={(e) => scrollToSection(e, "inicio")}>Volver arriba ↑</a>
       </footer>
 
       <a
