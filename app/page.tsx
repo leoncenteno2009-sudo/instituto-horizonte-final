@@ -374,7 +374,7 @@ export default function Home() {
       </footer>
 
       <a
-        href="https://wa.me/5215531001296?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Instituto%20Horizonte."
+        href="https://wa.me/5215525268475?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Instituto%20Horizonte."
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-float-button"
