@@ -197,11 +197,31 @@ export default function Home() {
 
   useEffect(() => {
     document.body.classList.toggle("modal-open", visitOpen || menuOpen);
-    return () => document.body.classList.remove("modal-open");
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setVisitOpen(false);
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.classList.remove("modal-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [visitOpen, menuOpen]);
 
   function submitVisit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const level = String(data.get("level") || "").trim();
+    const message = `Hola Instituto Horizonte. Soy ${name || "un interesado/a"}${phone ? ` (Tel: ${phone})` : ""}${email ? ` (${email})` : ""}. Me interesa agendar una visita guiada${level ? ` para ${level}` : ""}. ¿Podrían brindarme información?`;
+    const whatsappUrl = `https://wa.me/5215525268475?text=${encodeURIComponent(message)}`;
+    if (typeof window !== "undefined") {
+      window.open(whatsappUrl, "_blank");
+    }
     setRequestSent(true);
   }
 
