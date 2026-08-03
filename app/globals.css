@@ -355,187 +355,77 @@ img { display: block; max-width: 100%; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Header Actions & WhatsApp Buttons */
-.header-actions {
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.header-whatsapp-btn {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 16px;
-  border-radius: 8px;
-  background: #25d366;
-  color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 260ms ease, background 260ms ease, box-shadow 260ms ease;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
-}
-
-.header-whatsapp-btn:hover {
-  transform: translateY(-2px);
-  background: #1eb956;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-}
-
-.whatsapp-btn-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.mobile-whatsapp-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  min-height: 52px;
-  padding: 0 20px;
-  border-radius: 10px;
-  background: #25d366;
-  color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
-}
-
-/* High-Visibility Floating WhatsApp Card */
-.whatsapp-floating-card {
+/* Floating WhatsApp Button (Bottom Right Only) */
+.whatsapp-float-button {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 26px;
+  right: 26px;
   z-index: 99999;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 18px 12px 12px;
-  border: 1px solid rgba(37, 211, 102, 0.4);
-  border-radius: 60px;
-  background: rgba(18, 22, 30, 0.92);
-  backdrop-filter: blur(16px);
-  color: #ffffff;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 25px rgba(37, 211, 102, 0.25);
-  text-decoration: none;
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease, border-color 300ms ease;
-}
-
-.whatsapp-floating-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  border-color: #25d366;
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(37, 211, 102, 0.45);
-}
-
-.whatsapp-card-icon-bg {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
+  gap: 10px;
+  padding: 12px 22px 12px 16px;
+  border-radius: 50px;
   background: #25d366;
   color: #ffffff;
-  flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.5);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease, background-color 300ms ease;
 }
 
-.whatsapp-card-icon {
+.whatsapp-float-button:hover {
+  transform: translateY(-4px) scale(1.03);
+  background: #20bd5a;
+  color: #ffffff;
+  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.55), 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-float-icon {
   width: 26px;
   height: 26px;
+  flex-shrink: 0;
   fill: currentColor;
 }
 
-.whatsapp-card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.whatsapp-card-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.whatsapp-card-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #25d366;
-  box-shadow: 0 0 8px #25d366;
-}
-
-.whatsapp-card-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.01em;
-}
-
-.whatsapp-card-subtitle {
-  font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
+.whatsapp-float-label {
   white-space: nowrap;
-}
-
-.whatsapp-card-action {
-  margin-left: 6px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: rgba(37, 211, 102, 0.16);
-  color: #25d366;
-  font-size: 0.72rem;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: background 200ms ease, color 200ms ease;
-}
-
-.whatsapp-floating-card:hover .whatsapp-card-action {
-  background: #25d366;
-  color: #ffffff;
 }
 
 .whatsapp-pulse-ring {
   position: absolute;
   inset: -2px;
-  border-radius: 60px;
+  border-radius: 50px;
   border: 2px solid #25d366;
   pointer-events: none;
-  animation: whatsapp-card-pulse 2.4s infinite;
+  animation: whatsapp-pulse-anim 2.2s infinite;
 }
 
-@keyframes whatsapp-card-pulse {
+@keyframes whatsapp-pulse-anim {
   0% {
     transform: scale(1);
     opacity: 0.8;
   }
   100% {
-    transform: scale(1.06, 1.2);
+    transform: scale(1.15, 1.35);
     opacity: 0;
   }
 }
 
 @media (max-width: 650px) {
-  .whatsapp-floating-card {
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    justify-content: space-between;
-    padding: 10px 14px;
-    border-radius: 40px;
+  .whatsapp-float-button {
+    bottom: 18px;
+    right: 18px;
+    padding: 10px 18px 10px 14px;
+    font-size: 0.85rem;
   }
-  .whatsapp-card-subtitle {
-    font-size: 0.7rem;
+  .whatsapp-float-icon {
+    width: 22px;
+    height: 22px;
   }
 }
+
 
 

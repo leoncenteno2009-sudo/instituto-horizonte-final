@@ -221,24 +221,9 @@ export default function Home() {
           <a href="#vida">Vida estudiantil</a>
           <a href="#admisiones">Admisiones</a>
         </nav>
-        <div className="header-actions">
-          <a
-            className="header-whatsapp-btn"
-            href="https://wa.me/5215531001296?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Instituto%20Horizonte."
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Contacto directo vía WhatsApp con León Centeno"
-          >
-            <svg className="whatsapp-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
-              <path d="M12 1a11 11 0 0 0-9.43 16.63L1 23l5.54-1.45A11 11 0 1 0 12 1zm0 20a8.96 8.96 0 0 1-4.57-1.25l-.33-.19-3.39.89.9-3.3-.21-.34A8.97 8.97 0 1 1 12 21z"/>
-            </svg>
-            <span>WhatsApp</span>
-          </a>
-          <button className="header-cta" type="button" onClick={() => setVisitOpen(true)}>
-            Agenda tu visita <Arrow />
-          </button>
-        </div>
+        <button className="header-cta" type="button" onClick={() => setVisitOpen(true)}>
+          Agenda tu visita <Arrow />
+        </button>
         <button
           className="menu-toggle"
           type="button"
@@ -257,19 +242,6 @@ export default function Home() {
               <span>0{index + 1}</span>{["Modelo", "Aprendizaje", "Vida estudiantil", "Admisiones"][index]}
             </a>
           ))}
-          <a
-            className="mobile-whatsapp-btn"
-            href="https://wa.me/5215531001296?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Instituto%20Horizonte."
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-          >
-            <svg className="whatsapp-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
-              <path d="M12 1a11 11 0 0 0-9.43 16.63L1 23l5.54-1.45A11 11 0 1 0 12 1zm0 20a8.96 8.96 0 0 1-4.57-1.25l-.33-.19-3.39.89.9-3.3-.21-.34A8.97 8.97 0 1 1 12 21z"/>
-            </svg>
-            Contactar por WhatsApp (+52 55 3100 1296)
-          </a>
           <button type="button" onClick={() => { setMenuOpen(false); setVisitOpen(true); }}>Agenda tu visita <Arrow /></button>
         </nav>
       )}
@@ -405,24 +377,15 @@ export default function Home() {
         href="https://wa.me/5215531001296?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Instituto%20Horizonte."
         target="_blank"
         rel="noopener noreferrer"
-        className="whatsapp-floating-card"
-        aria-label="Contactar directamente por WhatsApp a León Centeno"
+        className="whatsapp-float-button"
+        aria-label="Contactar por WhatsApp"
       >
         <span className="whatsapp-pulse-ring" aria-hidden="true" />
-        <div className="whatsapp-card-icon-bg">
-          <svg className="whatsapp-card-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 1a11 11 0 0 0-9.43 16.63L1 23l5.54-1.45A11 11 0 1 0 12 1zm0 20a8.96 8.96 0 0 1-4.57-1.25l-.33-.19-3.39.89.9-3.3-.21-.34A8.97 8.97 0 1 1 12 21z"/>
-          </svg>
-        </div>
-        <div className="whatsapp-card-content">
-          <div className="whatsapp-card-header">
-            <span className="whatsapp-card-status-dot" />
-            <span className="whatsapp-card-title">WhatsApp Directo</span>
-          </div>
-          <span className="whatsapp-card-subtitle">+52 55 3100 1296 (León Centeno)</span>
-        </div>
-        <span className="whatsapp-card-action">Enviar mensaje ↗</span>
+        <svg className="whatsapp-float-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 1a11 11 0 0 0-9.43 16.63L1 23l5.54-1.45A11 11 0 1 0 12 1zm0 20a8.96 8.96 0 0 1-4.57-1.25l-.33-.19-3.39.89.9-3.3-.21-.34A8.97 8.97 0 1 1 12 21z"/>
+        </svg>
+        <span className="whatsapp-float-label">Enviar mensaje ↗</span>
       </a>
 
       {visitOpen && (
