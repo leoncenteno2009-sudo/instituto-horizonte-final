@@ -297,15 +297,15 @@ export default function Strands({
       delete geometry.attributes.uv;
     }
 
-    const width = ctn.offsetWidth || 800;
-    const height = ctn.offsetHeight || 600;
+    const initialW = Math.max(ctn.offsetWidth || (typeof window !== 'undefined' ? window.innerWidth : 800), 100);
+    const initialH = Math.max(ctn.offsetHeight || (typeof window !== 'undefined' ? window.innerHeight : 600), 100);
 
     const program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
         uTime: { value: 0 },
-        uResolution: { value: [width, height] },
+        uResolution: { value: [initialW, initialH] },
         uColors: { value: buildPalette(propsRef.current.colors) },
         uColorCount: { value: Math.min(propsRef.current.colors.length, MAX_COLORS) },
         uStrandCount: { value: Math.min(propsRef.current.count, MAX_STRANDS) },
@@ -327,8 +327,8 @@ export default function Strands({
     const mesh = new Mesh(gl, { geometry, program });
 
     const renderTarget = new RenderTarget(gl, {
-      width,
-      height
+      width: initialW,
+      height: initialH
     });
 
     const glassProgram = new Program(gl, {
@@ -336,7 +336,7 @@ export default function Strands({
       fragment: GLASS_FRAG,
       uniforms: {
         uScene: { value: renderTarget.texture },
-        uResolution: { value: [width, height] },
+        uResolution: { value: [initialW, initialH] },
         uRadius: { value: 0.46 * glassSize },
         uRefraction: { value: refraction },
         uDispersion: { value: dispersion }
@@ -348,8 +348,8 @@ export default function Strands({
 
     function resize() {
       if (!ctn || !renderer) return;
-      const w = ctn.offsetWidth || 800;
-      const h = ctn.offsetHeight || 600;
+      const w = Math.max(ctn.offsetWidth || (typeof window !== 'undefined' ? window.innerWidth : 800), 100);
+      const h = Math.max(ctn.offsetHeight || (typeof window !== 'undefined' ? window.innerHeight : 600), 100);
       renderer.setSize(w, h);
       program.uniforms.uResolution.value = [w, h];
       renderTarget.setSize(w, h);

@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const clientRoot = path.join(projectRoot, "dist", "client");
 const outputRoot = path.join(projectRoot, ".github-pages");
-const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] || "instituto-horizonte-final";
+const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] || "Instituto-Horizonte-Final";
 const basePath = (process.env.PAGES_BASE_PATH || `/${repository}`).replace(/\/$/, "");
 const siteOrigin = process.env.PAGES_ORIGIN || "https://leoncenteno2009-sudo.github.io";
 
