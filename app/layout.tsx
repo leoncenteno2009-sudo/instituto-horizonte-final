@@ -7,7 +7,8 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-const publicUrl = "https://leoncenteno2009-sudo.github.io/instituto-horizonte-final/";
+const repository = "Instituto-Horizonte-Final";
+const publicUrl = `https://leoncenteno2009-sudo.github.io/${repository}/`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(publicUrl),
@@ -16,8 +17,12 @@ export const metadata: Metadata = {
   keywords: ["Instituto Horizonte", "escuela", "bachillerato", "educación", "aprendizaje por proyectos", "vida estudiantil"],
   alternates: { canonical: publicUrl },
   icons: {
-    icon: `${publicUrl}favicon.png`,
-    shortcut: `${publicUrl}favicon.png`,
+    icon: [
+      { url: `/${repository}/favicon.png`, type: "image/png" },
+      { url: "/favicon.png", type: "image/png" }
+    ],
+    shortcut: `/${repository}/favicon.png`,
+    apple: `/${repository}/favicon.png`
   },
   openGraph: {
     title: "Instituto Horizonte — Aprende, crea y avanza",
@@ -26,19 +31,24 @@ export const metadata: Metadata = {
     siteName: "Instituto Horizonte",
     locale: "es_MX",
     type: "website",
-    images: [{ url: `${publicUrl}og.png`, width: 1792, height: 1024, alt: "Instituto Horizonte — Tu curiosidad tiene un lugar para crecer" }],
+    images: [{ url: `/${repository}/og.png`, width: 1792, height: 1024, alt: "Instituto Horizonte — Tu curiosidad tiene un lugar para crecer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Instituto Horizonte — Aprende, crea y avanza",
     description: "Tu curiosidad tiene un lugar para crecer.",
-    images: [`${publicUrl}og.png`],
+    images: [`/${repository}/og.png`],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-MX">
+      <head>
+        <link rel="icon" type="image/png" href={`/${repository}/favicon.png`} />
+        <link rel="shortcut icon" href={`/${repository}/favicon.png`} />
+        <link rel="apple-touch-icon" href={`/${repository}/favicon.png`} />
+      </head>
       <body className={geist.variable}>
         {children}
         <script

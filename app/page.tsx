@@ -264,6 +264,7 @@ export default function Home() {
       <div className="page-progress" aria-hidden="true"><span /></div>
       <header className="site-header">
         <a className="brand" href="#inicio" onClick={(e) => scrollToSection(e, "inicio")} aria-label="Instituto Horizonte, ir al inicio">
+          <img src="/Instituto-Horizonte-Final/favicon.png" alt="Instituto Horizonte Logo" style={{ width: '28px', height: '28px', borderRadius: '6px', objectFit: 'contain' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
           <span className="brand-mark">H</span>
           <span className="brand-name">INSTITUTO HORIZONTE</span>
         </a>
