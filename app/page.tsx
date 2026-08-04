@@ -326,23 +326,6 @@ export default function Home() {
               ))}
               <div className="story-shade" />
               <div className="story-grid" />
-              <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', opacity: 0.65 }}>
-                <Strands
-                  colors={["#1766DA", "#C69435", "#0B4CAF", "#60A5FA"]}
-                  count={3}
-                  speed={0.5}
-                  amplitude={1}
-                  waviness={1}
-                  thickness={0.7}
-                  glow={2.6}
-                  taper={3}
-                  spread={1}
-                  intensity={0.6}
-                  saturation={1.8}
-                  opacity={0.85}
-                  scale={1.5}
-                />
-              </div>
             </div>
 
             <div key={current.id} className="story-copy">
@@ -375,12 +358,29 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="modelo" className="model-section">
-          <div className="section-heading">
+        <section id="modelo" className="model-section" style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', opacity: 0.65 }}>
+            <Strands
+              colors={["#1766DA", "#C69435", "#0B4CAF", "#60A5FA"]}
+              count={4}
+              speed={0.45}
+              amplitude={1.1}
+              waviness={1}
+              thickness={0.75}
+              glow={2.8}
+              taper={3}
+              spread={1}
+              intensity={0.65}
+              saturation={1.8}
+              opacity={0.8}
+              scale={1.5}
+            />
+          </div>
+          <div className="section-heading" style={{ position: 'relative', zIndex: 1 }}>
             <p className="section-kicker">NUESTRO MODELO</p>
             <h2>Aprender no es repetir.<br /><em>Es descubrir de qué eres capaz.</em></h2>
           </div>
-          <div className="model-statement">
+          <div className="model-statement" style={{ position: 'relative', zIndex: 1 }}>
             <p>En Horizonte, cada estudiante aprende haciendo, preguntando y colaborando. El acompañamiento académico convive con proyectos que conectan distintas áreas y dan sentido a lo aprendido.</p>
             <div className="model-stats">
               <span><strong>1:<CountUp to={12} duration={2} /></strong>acompañamiento cercano</span>
