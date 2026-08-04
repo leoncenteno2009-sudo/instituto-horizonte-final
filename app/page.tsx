@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Strands from "../components/ui/Strands";
+import CountUp from "../components/ui/CountUp";
 
 type StageTheme = "light" | "blue" | "dark";
 
@@ -382,9 +383,9 @@ export default function Home() {
           <div className="model-statement">
             <p>En Horizonte, cada estudiante aprende haciendo, preguntando y colaborando. El acompañamiento académico convive con proyectos que conectan distintas áreas y dan sentido a lo aprendido.</p>
             <div className="model-stats">
-              <span><strong>1:12</strong>acompañamiento cercano</span>
-              <span><strong>4</strong>rutas de aprendizaje</span>
-              <span><strong>100%</strong>proyectos con propósito</span>
+              <span><strong>1:<CountUp to={12} duration={2} /></strong>acompañamiento cercano</span>
+              <span><strong><CountUp to={4} duration={1.5} /></strong>rutas de aprendizaje</span>
+              <span><strong><CountUp to={100} duration={2.5} />%</strong>proyectos con propósito</span>
             </div>
           </div>
         </section>
