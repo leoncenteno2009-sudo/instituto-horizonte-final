@@ -10,7 +10,7 @@
     "build": "npx vinext build",
     "start": "npx vinext start",
     "export:pages": "npm run build && node scripts/export-github-pages.mjs",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "test": "npm run export:pages && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
   },

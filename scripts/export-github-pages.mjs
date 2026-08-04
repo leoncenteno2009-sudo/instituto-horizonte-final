@@ -9,7 +9,10 @@ const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] || "Instituto-Ho
 const basePath = (process.env.PAGES_BASE_PATH || `/${repository}`).replace(/\/$/, "");
 const siteOrigin = process.env.PAGES_ORIGIN || "https://leoncenteno2009-sudo.github.io";
 
-const textExtensions = new Set([".html", ".xml"]);
+// Vite can leave absolute asset references inside its JavaScript preload
+// manifest and emitted stylesheets. GitHub Pages serves this project from a
+// repository subpath, so those files need the same rewrite as the HTML.
+const textExtensions = new Set([".html", ".xml", ".js", ".mjs", ".css"]);
 const rootAssets = ["/assets/", "/media/", "/images/", "/favicon.png", "/og.png"];
 
 function withPagesBase(input) {

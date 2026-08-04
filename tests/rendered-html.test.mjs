@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 async function render() {
@@ -38,4 +38,19 @@ test("ships the seven scrollsequence videos and supplied keyframes", async () =>
   assert.equal((page.match(/video:\s*"\/media\/horizonte-/g) ?? []).length, 7);
   assert.match(page, /stageOpacity|requestAnimationFrame/);
   assert.match(page, /prefers-reduced-motion|modal-open/);
+});
+
+test("keeps generated asset requests inside the GitHub Pages repository path", async () => {
+  const assetsDirectory = new URL("../.github-pages/assets/", import.meta.url);
+  const files = await readdir(assetsDirectory);
+  const generatedTextAssets = files.filter((file) => /\.(?:css|m?js)$/.test(file));
+  assert.ok(generatedTextAssets.length > 0);
+
+  const contents = await Promise.all(
+    generatedTextAssets.map((file) => readFile(new URL(file, assetsDirectory), "utf8")),
+  );
+
+  for (const content of contents) {
+    assert.doesNotMatch(content, /(?<!\/Instituto-Horizonte-Final)\/assets\//);
+  }
 });
