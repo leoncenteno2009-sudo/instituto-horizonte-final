@@ -10,6 +10,7 @@ const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
+const pagesBasePath = process.env.PAGES_BASE_PATH?.replace(/\/+$/, "");
 
 const localBindingConfig = {
   main: "./worker/index.ts",
@@ -44,6 +45,10 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    // Let Vite include the repository subpath before it fingerprints emitted
+    // assets. This gives corrected bundles new hashes and avoids stale browser
+    // caches after a GitHub Pages deployment.
+    base: pagesBasePath ? `${pagesBasePath}/` : "/",
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
