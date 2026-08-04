@@ -14,8 +14,6 @@ const rootAssets = ["/assets/", "/media/", "/images/", "/favicon.png", "/og.png"
 
 function withPagesBase(input) {
   const escapedBase = basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const escapedOrigin = siteOrigin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const baseSegment = basePath.slice(1);
   let result = input;
   for (const asset of rootAssets) {
     const escapedAsset = asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -24,10 +22,6 @@ function withPagesBase(input) {
       `${basePath}${asset}`,
     );
   }
-  result = result.replace(
-    new RegExp(`${escapedOrigin}/(?!${baseSegment}/)`, "g"),
-    `${siteOrigin}${basePath}/`,
-  );
   return result;
 }
 
