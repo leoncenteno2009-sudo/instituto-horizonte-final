@@ -18,6 +18,14 @@ const rootAssets = ["/assets/", "/media/", "/images/", "/favicon.png", "/og.png"
 function withPagesBase(input) {
   const escapedBase = basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   let result = input;
+  result = result.replace(
+    /url\(['"]?[A-Za-z]:\/[^'"]*?\.vinext\/fonts\/([^'"]+)['"]?\)/g,
+    `url(${basePath}/assets/_vinext_fonts/$1)`
+  );
+  result = result.replace(
+    /url\(['"]?[A-Za-z]:\\[^'"]*?\.vinext\\fonts\\([^'"]+)['"]?\)/g,
+    `url(${basePath}/assets/_vinext_fonts/$1)`
+  );
   for (const asset of rootAssets) {
     const escapedAsset = asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     result = result.replace(
