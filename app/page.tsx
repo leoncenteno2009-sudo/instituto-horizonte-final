@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import Strands from "../components/ui/Strands";
 
 type StageTheme = "light" | "blue" | "dark";
 
@@ -324,6 +325,23 @@ export default function Home() {
               ))}
               <div className="story-shade" />
               <div className="story-grid" />
+              <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', opacity: 0.65 }}>
+                <Strands
+                  colors={["#1766DA", "#C69435", "#0B4CAF", "#60A5FA"]}
+                  count={3}
+                  speed={0.5}
+                  amplitude={1}
+                  waviness={1}
+                  thickness={0.7}
+                  glow={2.6}
+                  taper={3}
+                  spread={1}
+                  intensity={0.6}
+                  saturation={1.8}
+                  opacity={0.85}
+                  scale={1.5}
+                />
+              </div>
             </div>
 
             <div key={current.id} className="story-copy">
